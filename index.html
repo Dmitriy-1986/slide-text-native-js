@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Документ</title>
+    
+    <style>
+    #slides {
+  position: relative;
+  height: 70px;
+  padding: 0px;
+  margin: 20px;
+  list-style-type: none;
+  overflow: hidden;
+}
+
+.slide {
+  position: absolute;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  opacity: 0;
+  transition: top 1s;
+  top: 100%;
+}
+
+.showing {
+  top: 0;
+  opacity: 1;
+  transition: top 1s, opacity 0s;
+  z-index: 2;
+}
+
+.slide {
+  text-align: center;
+  font-family: "Montserrat";
+  font-weight: bold;
+  font-size: 32px;
+  padding: 10px;
+  box-sizing: border-box;
+}
+@media (max-width: 400px) {
+    #slides {
+        height: 110px;
+        border: 1px solid red
+    }
+}
+    </style>
+</head>
+<body>
+    <ul id="slides">
+  <li class="slide"> Управляйте производством</li>
+  <li class="slide showing"> Контролируйте процессы</li>
+  <li class="slide"> Повышайте эффективность</li>
+</ul>
+    
+    <script>
+        const slides = document.querySelectorAll('#slides .slide');
+let currentSlide = 0;
+
+const nextSlide = () => {
+  slides[currentSlide].className = 'slide';
+  currentSlide = (currentSlide + 1) % slides.length;
+  slides[currentSlide].className = 'slide showing';
+};
+
+const slideInterval = setInterval(nextSlide, 3000);
+
+
+    </script>
+</body>
+</html>
